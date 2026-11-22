@@ -110,6 +110,35 @@ const readingTexts=[
 ];
 let students=JSON.parse(localStorage.getItem('arab_students')||'null')||defaultNames.map((name,i)=>({id:i+1,name,group:i<7?'A':i<14?'B':'C',scores:{}}));
 let questions=JSON.parse(localStorage.getItem('arab_questions')||'null')||Object.fromEntries(materials.map(m=>[m,[]]));
+const muhadatsahQuestionSeed = [
+'أَخْبِرْنِي عَنْ أُسْرَتِكَ. — Ceritakan tentang keluargamu.',
+'كَمْ فَرْدًا فِي أُسْرَتِكَ؟ — Berapa orang anggota keluargamu?',
+'مَا اسْمُ أَبِيكَ وَمَا اسْمُ أُمِّكَ؟ — Siapa nama ayah dan ibumu?',
+'مَاذَا يَعْمَلُ أَبُوكَ وَمَاذَا تَعْمَلُ أُمُّكَ؟ — Apa pekerjaan ayah dan ibumu?',
+'هَلْ لَكَ إِخْوَةٌ وَأَخَوَاتٌ؟ — Apakah kamu mempunyai saudara laki-laki dan perempuan?',
+'مَعَ مَنْ تَسْكُنُ فِي الْبَيْتِ؟ — Dengan siapa kamu tinggal di rumah?',
+'أَيْنَ تَدْرُسُ؟ — Di mana kamu belajar?',
+'فِي أَيِّ صَفٍّ أَنْتَ؟ — Kamu kelas berapa?',
+'مَا اسْمُ مَدْرَسَتِكَ أَوْ مَعْهَدِكَ؟ — Apa nama sekolah atau pesantrenmu?',
+'مَنْ مُدَرِّسُكَ؟ — Siapa gurumu?',
+'مَا مَادَّتُكَ الْمُفَضَّلَةُ؟ وَلِمَاذَا؟ — Apa pelajaran kesukaanmu dan mengapa?',
+'مَاذَا تَفْعَلُ فِي الْمَدْرَسَةِ؟ — Apa yang kamu lakukan di sekolah?',
+'مَاذَا تُرِيدُ أَنْ تَكُونَ فِي الْمُسْتَقْبَلِ؟ — Kamu ingin menjadi apa pada masa depan?',
+'لِمَاذَا تَخْتَارُ هَذِهِ الْمِهْنَةَ؟ — Mengapa kamu memilih profesi itu?',
+'مَنْ قُدْوَتُكَ فِي الْحَيَاةِ؟ — Siapa teladanmu dalam kehidupan?',
+'كَيْفَ تُحَقِّقُ أُمْنِيَّتَكَ؟ — Bagaimana kamu mewujudkan cita-citamu?',
+'مَاذَا تَفْعَلُ لِتَكُونَ نَاجِحًا؟ — Apa yang kamu lakukan agar berhasil?',
+'هَلِ اسْتَعْدَدْتَ لِلِامْتِحَانِ؟ — Apakah kamu sudah bersiap untuk ujian?',
+'كَيْفَ تَسْتَعِدُّ لِلِامْتِحَانِ؟ — Bagaimana kamu mempersiapkan ujian?',
+'مَاذَا تُرَاجِعُ قَبْلَ الِامْتِحَانِ؟ — Apa yang kamu ulangi sebelum ujian?',
+'كَمْ سَاعَةً تَدْرُسُ فِي الْيَوْمِ؟ — Berapa jam kamu belajar setiap hari?',
+'مَاذَا تَفْعَلُ إِذَا لَمْ تَفْهَمِ السُّؤَالَ؟ — Apa yang kamu lakukan jika tidak memahami pertanyaan?',
+'مَاذَا تَقُولُ لِصَدِيقِكَ قَبْلَ الِامْتِحَانِ؟ — Apa yang kamu ucapkan kepada teman sebelum ujian?'
+];
+if(!questions.Muhadatsah || questions.Muhadatsah.length===0){
+ questions.Muhadatsah=muhadatsahQuestionSeed.map(text=>({text}));
+ localStorage.setItem('arab_questions',JSON.stringify(questions));
+}
 if(!localStorage.getItem('arab_questions')){
   questions['Nahwu']=grammarSeed.map(q=>({text:q.topic+' — '+q.text}));
   questions['Sharaf']=[];
