@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="112" fill="#123b35"/>
+<rect x="82" y="82" width="348" height="348" rx="78" fill="#1d5b50" stroke="#d6ad60" stroke-width="12"/>
+<path d="M154 181h204M154 245h204M154 309h130" stroke="#fff" stroke-width="22" stroke-linecap="round"/>
+<path d="M324 307l26 26 48-58" fill="none" stroke="#d6ad60" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="256" y="394" text-anchor="middle" font-family="Arial,sans-serif" font-size="45" font-weight="700" fill="#f4e6c5">عربي</text>
+</svg>
