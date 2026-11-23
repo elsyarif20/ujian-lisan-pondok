@@ -139,9 +139,33 @@ if(!questions.Muhadatsah || questions.Muhadatsah.length===0){
  questions.Muhadatsah=muhadatsahQuestionSeed.map(text=>({text}));
  localStorage.setItem('arab_questions',JSON.stringify(questions));
 }
+const nahwuExamSeed = [
+'أَعْرِبْ كَلِمَةَ الْغُلَامُ فِي جُمْلَةِ: جَاءَ الْغُلَامُ إِلَى الْمَدْرَسَةِ. (Jelaskan i‘rab kata al-ghulāmu.)',
+'أَعْرِبْ كَلِمَةَ الْوَلَدَ فِي جُمْلَةِ: رَأَيْتُ الْوَلَدَ فِي الْبَيْتِ. (Jelaskan i‘rab kata al-walada.)',
+'أَعْرِبْ كَلِمَةَ الطَّالِبِ فِي جُمْلَةِ: مَرَرْتُ بِالطَّالِبِ فِي الطَّرِيقِ. (Jelaskan i‘rab kata ath-thālibi.)',
+'مَا عَلَامَةُ رَفْعِ الْمُثَنَّى؟ مَثِّلْ بِجُمْلَةٍ. (Apa tanda rafa‘ isim mutsanna? Berikan contoh.)',
+'مَا عَلَامَةُ رَفْعِ جَمْعِ الْمُذَكَّرِ السَّالِمِ؟ (Apa tanda rafa‘ jamak mudzakkar salim?)',
+'مَا الْفَرْقُ بَيْنَ الرَّفْعِ وَالنَّصْبِ وَالْجَرِّ؟ (Jelaskan perbedaan rafa‘, nashab, dan jar.)',
+'مَا الْمُضَافُ وَالْمُضَافُ إِلَيْهِ؟ اذْكُرْ مِثَالًا. (Apa mudhaf dan mudhaf ilaih? Berikan contoh.)',
+'مَا الْأَسْمَاءُ الْخَمْسَةُ؟ وَمَا عَلَامَةُ رَفْعِهَا؟ (Sebutkan asmaul khamsah dan tanda rafa‘-nya.)',
+'كَيْفَ تُمَيِّزُ بَيْنَ الْمُذَكَّرِ وَالْمُؤَنَّثِ؟ اذْكُرْ عَلَامَةً لِلْمُؤَنَّثِ. (Bagaimana membedakan mudzakkar dan muannats? Sebutkan tanda muannats.)',
+'أَعْطِ مِثَالًا لِاسْمٍ مَرْفُوعٍ وَآخَرَ مَنْصُوبٍ وَآخَرَ مَجْرُورٍ. (Berikan contoh isim marfu‘, manshub, dan majrur.)'
+];
+const sharafExamSeed = [
+'مَا الْمَقْصُودُ بِالْفِعْلِ الْمُتَعَدِّي؟ (Apa yang dimaksud fi‘il muta‘addi?)',
+'مَا الْمَقْصُودُ بِالْفِعْلِ اللَّازِمِ؟ (Apa yang dimaksud fi‘il lazim?)',
+'مَا الْفَرْقُ بَيْنَ الْفِعْلِ الْمُتَعَدِّي وَالْفِعْلِ اللَّازِمِ؟ (Jelaskan perbedaannya.)',
+'اذْكُرْ مِثَالَيْنِ لِلْفِعْلِ الْمُتَعَدِّي فِي جُمْلَتَيْنِ. (Berikan dua contoh fi‘il muta‘addi dalam kalimat.)',
+'اذْكُرْ مِثَالَيْنِ لِلْفِعْلِ اللَّازِمِ فِي جُمْلَتَيْنِ. (Berikan dua contoh fi‘il lazim dalam kalimat.)',
+'مَا الْفِعْلُ الْمُجَرَّدُ؟ (Apa yang dimaksud fi‘il mujarrad?)',
+'مَا الْفِعْلُ الْمَزِيدُ؟ (Apa yang dimaksud fi‘il mazid?)',
+'مَا الْفَرْقُ بَيْنَ الْفِعْلِ الْمُجَرَّدِ وَالْفِعْلِ الْمَزِيدِ؟ (Jelaskan perbedaannya.)',
+'مَثِّلْ لِلْفِعْلِ الثُّلَاثِيِّ الْمُجَرَّدِ وَالْمَزِيدِ. (Berikan contoh fi‘il tsulatsi mujarrad dan mazid.)',
+'كَيْفَ نَعْرِفُ أَنَّ الْفِعْلَ مَزِيدٌ فِيهِ؟ (Bagaimana mengenali fi‘il yang mendapat tambahan huruf?)'
+];
 if(!localStorage.getItem('arab_questions')){
-  questions['Nahwu']=grammarSeed.map(q=>({text:q.topic+' — '+q.text}));
-  questions['Sharaf']=[];
+  questions['Nahwu']=nahwuExamSeed.map(text=>({text}));
+  questions['Sharaf']=sharafExamSeed.map(text=>({text}));
   questions['Muhadatsah']=[
     {text:'أَلْقِ التَّحِيَّةَ عَلَى صَدِيقِكَ وَرُدَّ عَلَى تَحِيَّتِهِ. (Ucapkan salam kepada temanmu dan jawablah salamnya.)'},
     {text:'مَثِّلْ حِوَارًا قَصِيرًا فِي التَّرْحِيبِ. (Praktikkan dialog singkat tentang sambutan.)'},
@@ -153,6 +177,10 @@ if(!localStorage.getItem('arab_questions')){
     {text:'أَدِّ حِوَارًا عِنْدَ الْوَدَاعِ قَبْلَ النَّوْمِ. (Praktikkan dialog perpisahan sebelum tidur.)'}
   ];
 }
+// Migrasi data lama: isi Nahwu/Sharaf bila daftar lokalnya masih kosong, tanpa menimpa soal yang sudah ada.
+if(!questions['Nahwu'] || questions['Nahwu'].length===0) questions['Nahwu']=nahwuExamSeed.map(text=>({text}));
+if(!questions['Sharaf'] || questions['Sharaf'].length===0) questions['Sharaf']=sharafExamSeed.map(text=>({text}));
+localStorage.setItem('arab_questions',JSON.stringify(questions));
 let oral=JSON.parse(localStorage.getItem('arab_oral')||'{}');
 let settings=JSON.parse(localStorage.getItem('arab_settings')||'{}');
 function persist(){localStorage.setItem('arab_students',JSON.stringify(students));localStorage.setItem('arab_questions',JSON.stringify(questions));localStorage.setItem('arab_oral',JSON.stringify(oral));localStorage.setItem('arab_settings',JSON.stringify(settings));updateStats()}
